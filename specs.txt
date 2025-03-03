@@ -1,0 +1,6 @@
+Input voltages:
+Arduino Uno R3:     7 - 12V
+NodeMCU:            4.5 - 10V
+Servo MG996R:       4.8 - 7.2V
+Câmera Huskylens:   3.3 - 5V
+Display LCD:        4.5 - 5.5V
