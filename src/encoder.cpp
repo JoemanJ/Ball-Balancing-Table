@@ -3,9 +3,9 @@
 #include "Arduino.h"
 #include "nop.h"
 
-unsigned int PIN_ENCODER_CLK = 2;
-unsigned int PIN_ENCODER_SW = 3;
-unsigned int PIN_ENCODER_DT = 4;
+#define PIN_ENCODER_CLK 2
+#define PIN_ENCODER_SW 3
+#define PIN_ENCODER_DT 4
 
 unsigned char last_state = 0b00;
 
@@ -42,10 +42,10 @@ void setupEncoder()
 
 static void onMovement()
 {
-    unsigned char CH_A = digitalRead(PIN_ENCODER_CLK);
-    unsigned char CH_B = digitalRead(PIN_ENCODER_DT);
+    unsigned char CLK = digitalRead(PIN_ENCODER_CLK);
+    unsigned char DT = digitalRead(PIN_ENCODER_DT);
 
-    if (CH_A == CH_B)
+    if (CLK == DT)
     {
         _leftCallback();
     }
