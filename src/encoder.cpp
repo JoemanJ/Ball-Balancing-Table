@@ -14,6 +14,7 @@ void (*_rightCallback)(void) = doNothing;
 void (*_pressCallback)(void) = doNothing;
 
 static void onMovement();
+static void onPress();
 
 void changeLeftCalback(void (*leftCallback)(void))
 {
@@ -37,7 +38,7 @@ void setupEncoder()
     pinMode(PIN_ENCODER_SW, INPUT_PULLUP);
 
     attachInterrupt(digitalPinToInterrupt(PIN_ENCODER_CLK), onMovement, CHANGE);
-    attachInterrupt(digitalPinToInterrupt(PIN_ENCODER_SW), _pressCallback, FALLING);
+    attachInterrupt(digitalPinToInterrupt(PIN_ENCODER_SW), onPress, FALLING);
 }
 
 static void onMovement()
@@ -55,4 +56,9 @@ static void onMovement()
     {
        _rightCallback();
     }
+}
+
+static void onPress()
+{
+    _pressCallback();
 }
