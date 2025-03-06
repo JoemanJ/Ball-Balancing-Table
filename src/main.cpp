@@ -5,7 +5,7 @@
 void setup() {
   Serial.begin(9600);
   Serial.println("Serial begun");
-  setupMainMenu();
+  setupMainMenu();https://stackoverflow.com/questions/10422034/when-to-use-extern-in-c
   setupCamera();
   sei();
 }
@@ -16,18 +16,15 @@ void loop() {
     case REQUEST_FAIL:
       Serial.println("Failed to request object data");
       Serial.println("Check camera connection");
-      Serial.println();
       break;
 
     case NOT_LEARNED:
       Serial.println("Camera has not learned an object");
       Serial.println("Learn an object first");
-      Serial.println();
       break;
 
     case NO_OBJECT:
       Serial.println("No object found");
-      Serial.println();
       break;
 
     case UPDATE_SUCCESS:
