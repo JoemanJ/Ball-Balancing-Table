@@ -3,11 +3,9 @@
 #include "Arduino.h"
 #include "nop.h"
 
-#define PIN_ENCODER_CLK 2
-#define PIN_ENCODER_SW 3
-#define PIN_ENCODER_DT 4
-
-unsigned char last_state = 0b00;
+#define PIN_ENCODER_SW 32
+#define PIN_ENCODER_DT 35
+#define PIN_ENCODER_CLK 34
 
 void (*_leftCallback)(void) = doNothing;
 void (*_rightCallback)(void) = doNothing;
@@ -37,28 +35,28 @@ void setupEncoder()
     pinMode(PIN_ENCODER_DT, INPUT);
     pinMode(PIN_ENCODER_SW, INPUT_PULLUP);
 
-    attachInterrupt(digitalPinToInterrupt(PIN_ENCODER_CLK), onMovement, CHANGE);
+    attachInterrupt(digitalPinToInterrupt(PIN_ENCODER_DT), onMovement, CHANGE);
     attachInterrupt(digitalPinToInterrupt(PIN_ENCODER_SW), onPress, FALLING);
 }
 
 static void onMovement()
 {
-    unsigned char CLK = digitalRead(PIN_ENCODER_CLK);
-    unsigned char DT = digitalRead(PIN_ENCODER_DT);
+    bool CLK = digitalRead(PIN_ENCODER_CLK);
+    bool DT = digitalRead(PIN_ENCODER_DT);
 
     if (CLK == DT)
     {
-        _leftCallback();
+        _rightCallback();
     }
     
-    // Sentido antihorario
     else
     {
-       _rightCallback();
+        _leftCallback();
     }
 }
 
 static void onPress()
 {
+    if(digitalRead(PIN_ENCODER_SW)) return;
     _pressCallback();
 }

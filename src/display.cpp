@@ -3,12 +3,12 @@
 #include "Arduino.h"
 #include <LiquidCrystal.h>
 
-#define PIN_LCD_RS PIN_SPI_MISO // pin 12 on Arduino
-#define PIN_LCD_ENABLE PIN_SPI_MOSI // pin 11 on Arduino
-#define PIN_LCD_D4 10
-#define PIN_LCD_D5 9
-#define PIN_LCD_D6 8
-#define PIN_LCD_D7 7
+#define PIN_LCD_RS 18 // pin 12 on Arduino
+#define PIN_LCD_ENABLE 19 // pin 11 on Arduino
+#define PIN_LCD_D4 27
+#define PIN_LCD_D5 26
+#define PIN_LCD_D6 25
+#define PIN_LCD_D7 33
 
 LiquidCrystal lcd = LiquidCrystal(\
     PIN_LCD_RS,     \
@@ -58,7 +58,6 @@ void helloWorldFunc()
     lcd.setCursor(0, 1);
     lcd.write("123");
     lcd.cursor();
-    // lcd.blink();
 }
 
 void displayWrite(const char* str)
@@ -99,4 +98,21 @@ void displayBlink(void)
 void displayNoBlink(void)
 {
     lcd.noBlink();
+}
+
+void displayDebugInt(DISPLAY_LINES line, int var, const char* prefix = NULL)
+{
+    lcd.setCursor(0, line);
+    lcd.print("                ");
+    lcd.setCursor(0, line);
+    if (prefix != NULL) lcd.print(prefix);
+    lcd.print(var);
+}
+
+void displayDebugText(DISPLAY_LINES line, const char* txt)
+{
+    lcd.setCursor(0, line);
+    lcd.print("                ");
+    lcd.setCursor(0, line);
+    lcd.print(txt);
 }

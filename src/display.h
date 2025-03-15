@@ -17,6 +17,10 @@ void displayNoCursor(void);
 void displayBlink(void);
 void displayNoBlink(void);
 
+enum DISPLAY_LINES {L1 = 0, L2 = 1};
+void displayDebugInt(DISPLAY_LINES line, int var, const char* prefix);
+void displayDebugText(DISPLAY_LINES line, const char* txt);
+
 
 //Debug
 void helloWorldFunc();
