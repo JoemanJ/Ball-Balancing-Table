@@ -4,6 +4,7 @@
 #include "display.h"
 
 void setup() {
+  setupLCD();
   Serial.begin(9600);
   Serial.println("Serial begun");
   // setupMainMenu();
