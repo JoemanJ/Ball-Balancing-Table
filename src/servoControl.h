@@ -1,6 +1,9 @@
 #ifndef SERVOCONTROL_H
 #define SERVOCONTROL_H
 
+#define PIN_SERVO_X 12
+#define PIN_SERVO_Y 14
+
 #define INI_ANG_MS 1500
 #define MIN_ANG_MS 1000
 #define MAX_ANG_MS 2000

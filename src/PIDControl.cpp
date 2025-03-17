@@ -86,7 +86,7 @@ int calcPID( PIDControl* pc, int error)
     else pc->iVal = i;
 
     //calc drivative value
-    int d = (error-pc->lastError)/pc->deltaTime;
+    int d = dCoef*((error-pc->lastError)/pc->deltaTime);
 
     if(d>MAX_D_VAL) pc->dVal = MAX_D_VAL;
     else if(d<MIN_D_VAL) pc->dVal = MIN_D_VAL;

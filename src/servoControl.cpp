@@ -3,9 +3,6 @@
 #include "servoControl.h"
 #include <ESP32Servo.h>
 
-#define PIN_SERVO_X 11 
-#define PIN_SERVO_Y 11
-
 Servo servoX;
 Servo servoY;
 
@@ -23,6 +20,6 @@ void setupServos()
 }
 
 void updateServo(Servo* s, int ms)
-{  
+{
     s->writeMicroseconds(ms);
 }
