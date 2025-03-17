@@ -2,9 +2,13 @@
 #include "menu.h"
 #include "camera.h"
 #include "display.h"
+#include "servoControl.h"
+
 
 void setup() {
   setupLCD();
+  setupServos();
+
   Serial.begin(9600);
   Serial.println("Serial begun");
   // setupMainMenu();
@@ -37,8 +41,8 @@ void loop() {
       // Serial.print(ballX);
       // Serial.print(" Y:");
       // Serial.println(ballY);
-      displayDebugInt(L1, ballX, "X: ");
-      displayDebugInt(L2, ballY, "Y: ");
+      //displayDebugInt(L1, ballX, "X: ");
+      //displayDebugInt(L2, ballY, "Y: ");
       break;
 
     default:

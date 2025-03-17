@@ -3,21 +3,16 @@
 
 #include "Arduino.h"
 
-unsigned int getPVal();
-unsigned int getIVal();
-unsigned int getDVal();
-uint8_t getPCoef();
-uint8_t getICoef();
-uint8_t getDCoef();
+unsigned int getPCoef();
+unsigned int getICoef();
+unsigned int getDCoef();
 
-void setPVal(unsigned int v);
-void setIVal(unsigned int v);
-void setDVal(unsigned int v);
 void incPCoef();
 void incICoef();
 void incDCoef();
 void decPCoef();
 void decICoef();
 void decDCoef();
+
 
 #endif

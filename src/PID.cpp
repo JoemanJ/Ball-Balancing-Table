@@ -1,55 +1,24 @@
 #include "PID.h"
 
-unsigned int pVal = 0;
-unsigned int iVal = 0;
-unsigned int dVal = 0;
 
-uint8_t pCoef = 1;
-uint8_t iCoef = 1;
-uint8_t dCoef = 1;
+unsigned int pCoef = 1;
+unsigned int iCoef = 1;
+unsigned int dCoef = 1;
 
-unsigned int getPVal()
-{
-    return pVal;
-}
-unsigned int getIVal()
-{
-    return iVal;
-}
 
-unsigned int getDVal()
-{
-    return dVal;
-}
-
-uint8_t getPCoef()
+unsigned int getPCoef()
 {
     return pCoef;
 }
 
-uint8_t getICoef()
+unsigned int getICoef()
 {
     return iCoef;
 }
 
-uint8_t getDCoef()
+unsigned int getDCoef()
 {
     return dCoef;
-}
-
-void setPVal(unsigned int v)
-{
-    pVal = v;
-}
-
-void setIVal(unsigned int v)
-{
-    iVal = v;
-}
-
-void setDVal(unsigned int v)
-{
-    dVal = v;
 }
 
 void incPCoef()

@@ -1,0 +1,9 @@
+{
+    "C_Cpp.errorSquiggles": "enabled",
+    "C_Cpp.default.compilerPath": "/home/theus/.platformio/packages/toolchain-xtensa-esp32/bin/xtensa-esp32-elf-gcc",
+    "files.associations": {
+        "servowrapper.h": "c",
+        "esp32pwm.h": "c",
+        "cstdint": "cpp"
+    }
+}
