@@ -1,9 +1,9 @@
 #include "PID.h"
 
 
-unsigned int pCoef = 1;
-unsigned int iCoef = 1;
-unsigned int dCoef = 1;
+unsigned int pCoef = 1000;
+unsigned int iCoef = 0;
+unsigned int dCoef = 200;
 
 
 unsigned int getPCoef()
@@ -23,30 +23,30 @@ unsigned int getDCoef()
 
 void incPCoef()
 {
-    if (pCoef < 255) pCoef++;
+    if (pCoef < 1000) pCoef+=5;
 }
 
 void incICoef()
 {
-    if (iCoef < 255) iCoef++;
+    if (iCoef < 1000) iCoef+=5;
 }
 
 void incDCoef()
 {
-    if (dCoef < 255) dCoef++;
+    if (dCoef < 1000) dCoef+=5;
 }
 
 void decPCoef()
 {
-    if (pCoef > 0) pCoef--;
+    if (pCoef > 0) pCoef-=5;
 }
 
 void decICoef()
 {
-    if (iCoef > 0) iCoef--;
+    if (iCoef > 0) iCoef-=5;
 }
 
 void decDCoef()
 {
-    if (dCoef > 0) dCoef--;
+    if (dCoef > 0) dCoef-=5;
 }

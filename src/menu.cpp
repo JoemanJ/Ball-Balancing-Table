@@ -178,7 +178,7 @@ void proMenuDisplay()
 
     displaySetCursor(0, 1);
     displayWrite(getPCoef());
-    displayWrite("  ");
+    displayWrite("   ");
     displaySetCursor(6, 1);
     displayWrite(getICoef());
     displaySetCursor(12, 1);
@@ -218,7 +218,7 @@ void intMenuDisplay()
     displayWrite(getPCoef());
     displaySetCursor(6, 1);
     displayWrite(getICoef());
-    displayWrite("  ");
+    displayWrite("   ");
     displaySetCursor(12, 1);
     displayWrite(getDCoef());
 
@@ -258,7 +258,7 @@ void derMenuDisplay()
     displayWrite(getICoef());
     displaySetCursor(12, 1);
     displayWrite(getDCoef());
-    displayWrite("  ");
+    displayWrite("   ");
 
     displaySetCursor(D_COLUMN, 1);
     displayCursor();

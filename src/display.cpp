@@ -70,6 +70,11 @@ void displayWrite(uint8_t n)
     lcd.print(n);
 }
 
+void displayWrite(unsigned int n)
+{
+    lcd.print(n);
+}
+
 void displayClear(void)
 {
     lcd.clear();

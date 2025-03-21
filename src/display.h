@@ -10,6 +10,7 @@ void refreshDisplay();
 //Wrappers
 void displayWrite(const char* str);
 void displayWrite(uint8_t n);
+void displayWrite(unsigned int n);
 void displayClear(void);
 void displaySetCursor(uint8_t col, uint8_t row);
 void displayCursor(void);

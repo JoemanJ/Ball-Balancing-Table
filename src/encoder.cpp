@@ -14,6 +14,8 @@ void (*_pressCallback)(void) = doNothing;
 static void onMovement();
 static void onPress();
 
+static unsigned short int clickFlag = 0;
+
 void changeLeftCalback(void (*leftCallback)(void))
 {
     _leftCallback = leftCallback;
@@ -41,6 +43,8 @@ void setupEncoder()
 
 static void onMovement()
 {
+    clickFlag = 0;
+
     bool CLK = digitalRead(PIN_ENCODER_CLK);
     bool DT = digitalRead(PIN_ENCODER_DT);
 
@@ -57,6 +61,14 @@ static void onMovement()
 
 static void onPress()
 {
-    if(digitalRead(PIN_ENCODER_SW)) return;
-    _pressCallback();
+    if(!digitalRead(PIN_ENCODER_SW))
+    {
+        if (clickFlag == 0){
+            clickFlag = 1;
+            return;
+        } else{
+            clickFlag = 0;    
+            _pressCallback();
+        }
+    }
 }

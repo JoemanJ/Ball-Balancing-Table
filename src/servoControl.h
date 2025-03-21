@@ -1,8 +1,8 @@
 #ifndef SERVOCONTROL_H
 #define SERVOCONTROL_H
 
-#define PIN_SERVO_X 12
-#define PIN_SERVO_Y 14
+#define PIN_SERVO_X 12 //MOTOR ROXO
+#define PIN_SERVO_Y 14 //MOTOR MARELO
 
 #define INI_ANG_MS 1500
 #define MIN_ANG_MS 1000
