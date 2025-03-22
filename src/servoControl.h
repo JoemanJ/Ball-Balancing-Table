@@ -5,8 +5,8 @@
 #define PIN_SERVO_Y 14 //MOTOR MARELO
 
 #define INI_ANG_MS 1500
-#define MIN_ANG_MS 1000
-#define MAX_ANG_MS 2000
+#define MIN_ANG_MS 1200
+#define MAX_ANG_MS 1800
 
 #include <ESP32Servo.h>
 

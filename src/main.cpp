@@ -4,6 +4,7 @@
 #include "display.h"
 #include "servoControl.h"
 #include "PIDControl.h"
+#include "mqttConnect.h"
 
 void setup() {
   delay(500);
@@ -34,6 +35,8 @@ void loop() {
 
     case NO_OBJECT:
       Serial.println("No object found");
+      updateServo(&servoX, INI_ANG_MS);
+      updateServo(&servoY, INI_ANG_MS);
       //displayDebugText(L1, "NO OBJECT");
       break;
 
