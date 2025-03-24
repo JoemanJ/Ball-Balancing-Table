@@ -19,6 +19,8 @@ struct pidc{
     int dVal = 0;
     int pidVal = 0;
 
+    int Vel = 0;
+
     long lastTime = millis();        
     double deltaTime = DT_FIRST_VAL;    
     int lastError = 0;
@@ -98,7 +100,8 @@ int calcPID( PIDControl* pc, int error)
     if(dCoef == 0) pc->dVal = 0;
     else
     {
-        int d = long(dCoef)*((error-pc->lastError)/pc->deltaTime);
+        pc->Vel = ((error-pc->lastError)/pc->deltaTime);
+        int d = long(dCoef)*pc->Vel;
         pc->lastError = error;
     
         if(d>MAX_D_VAL) pc->dVal = MAX_D_VAL;
@@ -114,6 +117,11 @@ int calcPID( PIDControl* pc, int error)
     else pc->pidVal = pid;
 
     return pc->pidVal;
+}
+
+int getVel(PIDControl* pc)
+{
+    return pc->Vel;
 }
 
 int remapPID(PIDControl* pc, int minRef, int maxRef)

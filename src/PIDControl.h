@@ -11,6 +11,8 @@ int getPVal(PIDControl* pc);
 
 int getIVal(PIDControl* pc);
 
+int getVel(PIDControl* pc);
+
 int getDVal(PIDControl* pc);
 
 int getPIDVal(PIDControl* pc);

@@ -5,10 +5,14 @@ typedef enum tipoMensagemMQTT
 {
     Posicao_X=0,
     Posicao_Y=1,
-    Controle_P=2,
-    Controle_I=3,
-    Controle_D=4,
-    Velocidade=5
+    ContribuicaoP_X=2,
+    ContribuicaoI_X=3,
+    ContribuicaoD_X=4,
+    ContribuicaoP_Y=5,
+    ContribuicaoI_Y=6,
+    ContribuicaoD_Y=7,
+    Velocidade_X=8,
+    Velocidade_Y=9
 };
 
 void connectToBroker();

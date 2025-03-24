@@ -6,17 +6,48 @@
 #include "PIDControl.h"
 #include "mqttConnect.h"
 
+void parallelTask(void* pvParameters){
+  while (1)
+  {  
+    sendMessageToBroker(ballX, Posicao_X);
+    //sendMessageToBroker(ballY, Posicao_Y);
+
+    //sendMessageToBroker(getVel(&PIDX), Velocidade_X);
+    //sendMessageToBroker(getVel(&PIDY), Velocidade_Y);
+    
+    sendMessageToBroker(getPVal(&PIDX), ContribuicaoP_X);
+    //sendMessageToBroker(getPVal(&PIDY), ContribuicaoP_Y);
+    
+    sendMessageToBroker(getIVal(&PIDX), ContribuicaoI_X);
+    //sendMessageToBroker(getIVal(&PIDY), ContribuicaoI_Y);
+    
+    sendMessageToBroker(getDVal(&PIDX), ContribuicaoD_X);
+    //sendMessageToBroker(getDVal(&PIDY), ContribuicaoD_Y);
+    
+    delay(2000);
+  }
+}
+
 void setup() {
   delay(500);
-  setupLCD();
   setupServos();
 
   Serial.begin(9600);
   Serial.println("Serial begun");
   setupMainMenu();
   setupCamera();
+
+  connectToBroker();
+
+  setupLCD();
+
+  //xTaskCreatePinnedToCore( parallelTask,"parallelTask",10000,NULL,    1,    NULL,    1  );
+
   sei();
 }
+
+int setPointX = 156;//160
+int setPointY = 116;//120
 
 void loop() {
   switch(updateBallPosition())
@@ -35,25 +66,25 @@ void loop() {
 
     case NO_OBJECT:
       Serial.println("No object found");
-      updateServo(&servoX, INI_ANG_MS);
-      updateServo(&servoY, INI_ANG_MS);
+      //updateServo(&servoX, INI_ANG_MS);
+      //updateServo(&servoY, INI_ANG_MS);
       //displayDebugText(L1, "NO OBJECT");
       break;
 
     case UPDATE_SUCCESS:
     {
-      Serial.print("X:");
-      Serial.print(ballX);
-      Serial.print(" Y:");
-      Serial.println(ballY);
+      //Serial.print("X:");
+      //Serial.print(ballX);
+      //Serial.print(" Y:");
+      //Serial.println(ballY);
 
-      int errorX = 160 - ballX;
+      int errorX = -1*( setPointX - ballX );
       calcPID(&PIDX, errorX);
-      int valX = remapPID(&PIDX, MIN_ANG_MS, MAX_ANG_MS);
+      int valX = remapPID(&PIDX, MIN_ANG_MS+X_BIAS, MAX_ANG_MS+X_BIAS);
 
-      int errorY = 120 - ballY;
+      int errorY = setPointY - ballY;
       calcPID(&PIDY, errorY);
-      int valY = remapPID(&PIDY, MIN_ANG_MS, MAX_ANG_MS);
+      int valY = remapPID(&PIDY, MIN_ANG_MS+Y_BIAS, MAX_ANG_MS+Y_BIAS);
       
       updateServo(&servoX, valX);
       updateServo(&servoY, valY);
@@ -77,4 +108,6 @@ void loop() {
       // Serial.println("Unknown error!");  
     }
   }
+  reconnect();
+  
 }
