@@ -6,12 +6,14 @@
 #define MAX_P_VAL 50000
 #define MIN_I_VAL -50000
 #define MAX_I_VAL 50000
-#define MIN_D_VAL -50000
-#define MAX_D_VAL 50000
+#define MIN_D_VAL -25000
+#define MAX_D_VAL 25000
 #define MIN_PID_VAL -50000
 #define MAX_PID_VAL 50000
 
 #define DT_FIRST_VAL -1
+
+#define I_ERROR_THRESHOLD  
 
 struct pidc{
     int pVal = 0;
@@ -86,7 +88,7 @@ int calcPID( PIDControl* pc, int error)
     pc->lastTime = time;
 
     //calc integral value
-    if(iCoef == 0) pc->iVal = 0;
+    if(iCoef == 0 || abs(error) > 40) pc->iVal = 0;
     else
     { 
         int i =  pc->iVal + long(iCoef)*error*pc->deltaTime;

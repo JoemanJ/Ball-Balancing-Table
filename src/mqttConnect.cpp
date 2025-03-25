@@ -63,7 +63,7 @@ void reconnect()
 void sendMessageToBroker(float value, tipoMensagemMQTT type)
 {
     // Convert the value to a char array
-    char valueString[8];
+    char valueString[50];
     dtostrf(value, 1, 2, valueString);
 
     if(type == Posicao_X)

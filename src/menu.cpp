@@ -137,11 +137,13 @@ Menu proIntDerMenu = {
 
 void mainMenuDisplay()
 {
-    displaySetCursor(0, 1);
+    displaySetCursor(P_COLUMN, 1);
     displayWrite(getPCoef());
-    displaySetCursor(6, 1);
+    displaySetCursor(I_COLUMN-2, 1);
+    displayWrite("  ");
     displayWrite(getICoef());
-    displaySetCursor(12, 1);
+    displaySetCursor(D_COLUMN-2, 1);
+    displayWrite("  ");
     displayWrite(getDCoef());
     
     displaySetCursor(0, 0);
@@ -165,6 +167,7 @@ void mainMenuDisplay()
     case P_I_D:
         displayWrite("PRO:<>INT:<>DER:");
         displayNoCursor();
+        break;
     
     case P:
         displayWrite("PRO:  INT:  DER:");
@@ -215,8 +218,12 @@ void mainMenuOnLeft()
             cursorPosition = P_I;
             break;
 
-        case P_I_D:
+        case D_P:
             cursorPosition = I_D;
+            break;
+
+        case P_I_D:
+            cursorPosition = D_P;
             break;
 
         default:
@@ -247,6 +254,10 @@ void mainMenuOnRight()
             break;
 
         case I_D:
+            cursorPosition = D_P;
+            break;
+
+        case D_P:
             cursorPosition = P_I_D;
             break;
 
