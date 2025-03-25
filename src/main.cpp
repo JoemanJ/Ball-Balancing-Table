@@ -5,26 +5,39 @@
 #include "servoControl.h"
 #include "PIDControl.h"
 #include "mqttConnect.h"
+#include <freertos/FreeRTOS.h>
+
+SemaphoreHandle_t PIDX_mutex = xSemaphoreCreateMutex();
+
+SemaphoreHandle_t PIDY_mutex = xSemaphoreCreateMutex();
+
+SemaphoreHandle_t ballX_mutex = xSemaphoreCreateMutex();
+
+SemaphoreHandle_t ballY_mutex = xSemaphoreCreateMutex();
+
 
 void parallelTask(void* pvParameters){
+  TickType_t time;
+  const TickType_t freq = 2000;
+  time = xTaskGetTickCount();
   while (1)
   {  
+    
     sendMessageToBroker(ballX, Posicao_X);
-    //sendMessageToBroker(ballY, Posicao_Y);
+    sendMessageToBroker(ballY, Posicao_Y);
 
     //sendMessageToBroker(getVel(&PIDX), Velocidade_X);
     //sendMessageToBroker(getVel(&PIDY), Velocidade_Y);
     
-    sendMessageToBroker(getPVal(&PIDX), ContribuicaoP_X);
+    //sendMessageToBroker(getPVal(&PIDX), ContribuicaoP_X);
     //sendMessageToBroker(getPVal(&PIDY), ContribuicaoP_Y);
     
-    sendMessageToBroker(getIVal(&PIDX), ContribuicaoI_X);
+    //sendMessageToBroker(getIVal(&PIDX), ContribuicaoI_X);
     //sendMessageToBroker(getIVal(&PIDY), ContribuicaoI_Y);
     
-    sendMessageToBroker(getDVal(&PIDX), ContribuicaoD_X);
+    //sendMessageToBroker(getDVal(&PIDX), ContribuicaoD_X);
     //sendMessageToBroker(getDVal(&PIDY), ContribuicaoD_Y);
-    
-    delay(2000);
+    xTaskDelayUntil(&time, freq);
   }
 }
 
@@ -41,7 +54,7 @@ void setup() {
 
   setupLCD();
 
-  //xTaskCreatePinnedToCore( parallelTask,"parallelTask",10000,NULL,    1,    NULL,    1  );
+  xTaskCreatePinnedToCore( parallelTask,"parallelTask",50000,NULL,    1,    NULL,    1  );
 
   sei();
 }
