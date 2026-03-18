@@ -1,4 +1,4 @@
-#### Project made as an assignment for Embedded Systems class. The goas was to keep a small ball on the center of a table automatically, using an ESP32 board with two servo motors and PID controls. 
+#### Project made as an assignment for Embedded Systems class. The goal was to keep a small ball on the center of a table automatically, using an ESP32 board with two servo motors and PID controls. 
 
 ## Project developed by:
 Diogo Delazare Brandão\
